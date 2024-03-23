@@ -2,13 +2,13 @@
 # #.\myenv\scripts\activate.ps1
 
 import os
+from haystack import Pipeline
 from haystack.components.writers import DocumentWriter
 from haystack.components.converters import MarkdownToDocument, PyPDFToDocument, TextFileToDocument
 from haystack.components.preprocessors import DocumentSplitter, DocumentCleaner
 from haystack.components.routers import FileTypeRouter
 from haystack.components.joiners import DocumentJoiner
 from haystack.components.embedders import SentenceTransformersDocumentEmbedder, SentenceTransformersTextEmbedder
-from haystack import Pipeline
 from haystack.components.retrievers.in_memory import InMemoryEmbeddingRetriever
 from haystack.components.builders import PromptBuilder
 from haystack.document_stores.in_memory import InMemoryDocumentStore
@@ -91,7 +91,7 @@ basic_rag_pipeline.connect("retriever", "prompt_builder.documents")
 basic_rag_pipeline.connect("prompt_builder", "llm")
 
 while True:
-    print("\033[91mAsk me anything about vegan eggplant recipe documents.\033[0m")
+    print("\033[91mAsk me anything about the vegan recipe documents.\033[0m")
     question = input("Question: ")
     # question = "What does Rhodes Statue look like?"
     if question == "exit":
