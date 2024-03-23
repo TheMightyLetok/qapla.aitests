@@ -1,5 +1,16 @@
 # https://haystack.deepset.ai/tutorials/30_file_type_preprocessing_index_pipeline
-# #.\myenv\scripts\activate.ps1
+
+# New virtaul environemnt
+# python -m venv venv
+
+# Active the virtual environment
+# .\venv\Scripts\activate
+
+# Install the required packages
+# pip install -r requirements.txt
+
+# Run the script
+# python .\create_embeddings_then_question_them_openai_rag.py
 
 import os
 from haystack import Pipeline
@@ -93,10 +104,10 @@ basic_rag_pipeline.connect("prompt_builder", "llm")
 while True:
     print("\033[91mAsk me anything about the vegan recipe documents.\033[0m")
     question = input("Question: ")
-    # question = "What does Rhodes Statue look like?"
+    # question = "Should the persimon cool?"
     if question == "exit":
         break
         
     response = basic_rag_pipeline.run({"text_embedder": {"text": question}, "prompt_builder": {"question": question}})
-    print(response["llm"]["replies"][0])
+    print("\033[32m" + response["llm"]["replies"][0] + "\033[0m")
     
